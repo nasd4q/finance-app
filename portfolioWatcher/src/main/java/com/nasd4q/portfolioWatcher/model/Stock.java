@@ -1,9 +1,14 @@
 package com.nasd4q.portfolioWatcher.model;
 
-public final class Stock {
-    final private String codeIsin;
-    final private String codeSicovam;
-    final private String nom;
+import java.io.Serializable;
+
+/**
+ * immutable class that identifies a stock by way of codeIsin and/or codeSicovam and a name
+ */
+public final class Stock implements Serializable {
+    private final String codeIsin;
+    private final String codeSicovam;
+    private final String nom;
 
     public Stock(String codeIsin, String codeSicovam, String nom) {
         this.codeIsin = codeIsin;

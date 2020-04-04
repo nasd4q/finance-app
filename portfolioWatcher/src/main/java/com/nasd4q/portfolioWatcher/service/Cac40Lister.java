@@ -13,6 +13,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Obtention de la liste des membres du cac40 à une date donnée
+ */
 public class Cac40Lister {
     /**
      * @param date
@@ -54,8 +57,8 @@ public class Cac40Lister {
     }
 
     /**
-     *
-     * @param row telle que fournie par https://www.bnains.org/archives/histocac/compocac.php
+     * @param row (html tr element) telle que fournie par
+     *            https://www.bnains.org/archives/histocac/compocac.php
      *            lors de la demande des membres du cac40 à une date donnée
      * @return l'action (Stock) correspondante, null si échec
      */
