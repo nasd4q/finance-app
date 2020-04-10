@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.model;
+package com.nasd4q.portfolioWatcher.storage;
 
 public final class LineDate {
     private final String line;

@@ -10,6 +10,6 @@ public class Cac40ListerTest {
 
     @Test
     public void getList() throws IOException {
-        cac40Lister.getList(LocalDate.of(2015,6,1));
+        //       cac40Lister.getList(LocalDate.of(2015,6,1));
     }
 }

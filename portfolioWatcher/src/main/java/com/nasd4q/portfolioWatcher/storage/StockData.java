@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.model;
+package com.nasd4q.portfolioWatcher.storage;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
  * immutable class that stores a single piece of stock historical data
  */
 public final class StockData {
-    private final Stock stock; //Stock is immutable. So are LocalDateTime and Duration.
+    private final StockDAO stock; //Stock is immutable. So are LocalDateTime and Duration.
     private final LocalDateTime date;
     private final Duration duration; //high, low, open, close....relevant to when ?
     private final String unit;
@@ -17,7 +17,7 @@ public final class StockData {
     private final float close;
     private final int volume;
 
-    public StockData(Stock stock, LocalDateTime date, Duration duration, String unit, float open, float high, float low, float close, int volume) {
+    public StockData(StockDAO stock, LocalDateTime date, Duration duration, String unit, float open, float high, float low, float close, int volume) {
         this.stock = stock;
         this.date = date;
         this.duration = duration;
@@ -29,7 +29,7 @@ public final class StockData {
         this.volume = volume;
     }
 
-    public Stock getStock() {
+    public StockDAO getStock() {
         return stock;
     }
 

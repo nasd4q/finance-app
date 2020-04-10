@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.service;
 
-import com.nasd4q.portfolioWatcher.model.LineDate;
+import com.nasd4q.portfolioWatcher.storage.LineDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**

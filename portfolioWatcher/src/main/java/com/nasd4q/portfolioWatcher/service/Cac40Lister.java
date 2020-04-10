@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.service;
 
-import com.nasd4q.portfolioWatcher.model.Stock;
+import com.nasd4q.portfolioWatcher.storage.Stock;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +21,7 @@ public class Cac40Lister {
      * @param date
      * @return la liste des actions faisant partie du cac40 à la date donnée
      * @throws IOException
-     */
+     *//*
     //TODO gérer mieux cette IOException
     public List<Stock> getList(LocalDate date) throws IOException {
 
@@ -56,12 +56,12 @@ public class Cac40Lister {
         return stocks;
     }
 
-    /**
+    *//**
      * @param row (html tr element) telle que fournie par
      *            https://www.bnains.org/archives/histocac/compocac.php
      *            lors de la demande des membres du cac40 à une date donnée
      * @return l'action (Stock) correspondante, null si échec
-     */
+     *//*
     private Stock StockFromRow(Element row) {
         if (row == null)
             return null;
@@ -70,6 +70,6 @@ public class Cac40Lister {
 
         if (tds==null || tds.size()!=3)
             return null;
-        return new Stock(tds.get(0).text(),tds.get(1).text(),tds.get(2).text());
-    }
+        return new StockDao(tds.get(0).text(),tds.get(1).text(),tds.get(2).text());
+    }*/
 }
