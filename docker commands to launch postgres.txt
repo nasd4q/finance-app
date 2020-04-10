@@ -1,3 +1,11 @@
 docker pull postgres
 
+
+//test
+docker run --rm   --name pg-docker-test -e POSTGRES_PASSWORD=docker -d -p 9432:5432 -v /Users/apple/dev_projects/financeApp/DockerPostgresTestVolume/:/var/lib/postgresql/data  postgres
+
+//real deal
 docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v /Users/apple/dev_projects/financeApp/DockerPostgresVolume/:/var/lib/postgresql/data  postgres
+
+//connect from command line to postgres db
+psql "dbname=postgres host=localhost user=postgres password=docker port=9432"
