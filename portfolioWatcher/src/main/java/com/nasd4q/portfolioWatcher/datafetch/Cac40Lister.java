@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.service;
+package com.nasd4q.portfolioWatcher.datafetch;
 
 import com.nasd4q.portfolioWatcher.model.Stock;
 import org.jsoup.Connection;
@@ -6,6 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class Cac40Lister {
     /**
      * @param date

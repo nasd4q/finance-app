@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.service;
+package com.nasd4q.portfolioWatcher.datafetch;
 
 import org.junit.jupiter.api.Test;
 

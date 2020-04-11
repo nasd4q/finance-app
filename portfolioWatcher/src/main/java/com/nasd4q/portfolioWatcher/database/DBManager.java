@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.dtbs;
+package com.nasd4q.portfolioWatcher.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component //in order to make it Autowired-able
-public class StateChecker {
+public class DBManager {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -32,5 +32,11 @@ public class StateChecker {
                         "SELECT table_name FROM information_schema.tables " +
                                 "WHERE table_schema = current_schema();",
                         (resultSet,rowNum)->resultSet.getString(1));
+    }
+
+    public void createAndSetCurrentSchema(String name) {
+        jdbcTemplate
+                .update("CREATE SCHEMA IF NOT EXISTS " + name + ";\n" +
+                                "SET search_path= \"$user\", " + name + ";");
     }
 }

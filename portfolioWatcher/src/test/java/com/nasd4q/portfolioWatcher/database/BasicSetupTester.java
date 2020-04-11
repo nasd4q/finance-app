@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.dtbs;
+package com.nasd4q.portfolioWatcher.database;
 
 import com.nasd4q.portfolioWatcher.configuration.DbConfigResolver;
 import org.junit.jupiter.api.Test;
