@@ -32,4 +32,32 @@ public class Manipulater {
                         (resultSet,rowNum)->rowNum + "" + resultSet.getInt(1))
                 .forEach(System.out::println);
     }
+
+    @Test
+    public void listSchemas() {
+        jdbcTemplate
+                .query(
+                        "SELECT schema_name FROM information_schema.schemata;",
+                        (resultSet,rowNum)->rowNum + " " + resultSet.getString(1))
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void listTablesInCurrentSchema() {
+        jdbcTemplate
+                .query(
+                        "SELECT table_name FROM information_schema.tables " +
+                                "WHERE table_schema = current_schema();",
+                        (resultSet,rowNum)->rowNum + " " + resultSet.getString(1))
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void showContentTableMembers() {
+        jdbcTemplate
+                .query(
+                        "SELECT * FROM members;",
+                        (resultSet,rowNum)->rowNum + " " + resultSet.getString(1))
+                .forEach(System.out::println);
+    }
 }
