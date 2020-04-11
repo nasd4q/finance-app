@@ -50,6 +50,13 @@
 			<version>42.2.12</version>
 		</dependency>
 
+		<!-- eliminate boilerplate db code : getConnection, createStatement etc.
+			+ set up a datasource (com.zaxxer.hikari.HikariDataSource HikariPool ??) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
