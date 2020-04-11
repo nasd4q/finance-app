@@ -64,7 +64,7 @@ fi
 
 echo
 
-read -p "----------------> What name to use for postgres container? (Default : pg-docker-test) " containerName;
+#read -p "----------------> What name to use for postgres container? (Default : pg-docker-test) " containerName;
 if [ -z "$containerName" ]
 then
     containerName="pg-docker-test"
@@ -121,6 +121,7 @@ postgres
         echo sleeping 20
         sleep 20
         echo going on
+        echo "psql \"dbname=postgres host=localhost user=postgres password=$psswd port=$port\""
         psql "dbname=postgres host=localhost user=postgres password=$psswd port=$port"
     else
         echo "not connecting"
