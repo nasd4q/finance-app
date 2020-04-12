@@ -15,10 +15,15 @@ import java.util.stream.Collectors;
 
 @Component
 public class Cac40Archiver {
+
+    private final Cac40DataFetcher cac40DataFetcher;
+    private final Cac40Repository cac40Repository;
+
     @Autowired
-    private Cac40DataFetcher cac40DataFetcher;
-    @Autowired
-    private Cac40Repository cac40Repository;
+    public Cac40Archiver(Cac40DataFetcher cac40DataFetcher, Cac40Repository cac40Repository) {
+        this.cac40DataFetcher = cac40DataFetcher;
+        this.cac40Repository = cac40Repository;
+    }
 
     /**
      * Persists the composition of the Cac 40 index at a number of evenly spaced dates
@@ -42,7 +47,6 @@ public class Cac40Archiver {
 
             cac40Repository.addAll(cac40Members);
         }
-
     }
 
 
