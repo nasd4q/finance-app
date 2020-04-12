@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component //in order to make it Autowired-able
-public class DBManager {
+class _DBManager {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -34,6 +34,11 @@ public class DBManager {
                         (resultSet,rowNum)->resultSet.getString(1));
     }
 
+    /**
+     * Create schema if not exists
+     * and set searchpath so that this schema becomes current_schema()
+     * @param name the name of the schema to create / go to
+     */
     public void createAndSetCurrentSchema(String name) {
         jdbcTemplate
                 .update("CREATE SCHEMA IF NOT EXISTS " + name + ";\n" +

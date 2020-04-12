@@ -1,14 +1,14 @@
-package com.nasd4q.portfolioWatcher.configuration;
+package com.nasd4q.portfolioWatcher.database;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DbConfigResolver {
+class _DbConfigResolver {
 
-    @Value("${myconfigs.db.url}") private String url;
-    @Value("${myconfigs.db.user}") private String user;
-    @Value("${myconfigs.db.password}") private String password;
+    @Value("${spring.datasource.url}") private String url;
+    @Value("${spring.datasource.username}") private String user;
+    @Value("${spring.datasource.password}") private String password;
 
     public String getUrl() {
         return url;

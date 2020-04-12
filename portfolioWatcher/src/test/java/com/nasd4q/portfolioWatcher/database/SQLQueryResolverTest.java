@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class SQLQueryResolverTester {
+public class SQLQueryResolverTest {
     @Autowired
-    SQLQueryResolver queryResolver;
+    _SQLQueryResolver queryResolver;
 
     @Test
     public void printQueries() {

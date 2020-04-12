@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class DBManagerTest {
 
     @Autowired
-    DBManager dbManager;
+    _DBManager dbManager;
 
     @Test
     public void printBasicDBInfos() {

@@ -1,6 +1,5 @@
 package com.nasd4q.portfolioWatcher.database;
 
-import com.nasd4q.portfolioWatcher.configuration.DbConfigResolver;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,10 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @SpringBootTest
-public class BasicSetupTester {
+public class BasicSetupTest {
 
     @Autowired
-    DbConfigResolver dbConfigResolver;
+    _DbConfigResolver dbConfigResolver;
 
     @Test
     public void printPostgresVersion() {
@@ -31,7 +30,7 @@ public class BasicSetupTester {
 
         } catch (SQLException ex) {
 
-            Logger lgr = java.util.logging.Logger.getLogger(BasicSetupTester.class.getName());
+            Logger lgr = java.util.logging.Logger.getLogger(BasicSetupTest.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }

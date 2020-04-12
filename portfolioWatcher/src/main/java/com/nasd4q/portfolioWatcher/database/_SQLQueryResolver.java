@@ -6,15 +6,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 @PropertySource("classpath:sql.properties")
-public class SQLQueryResolver {
-    @Value("${query.list.tables}")
+class _SQLQueryResolver {
+    @Value("${select.userCreatedTables}")
     private String listTables;
-    @Value("${query.create.schema}")
+    @Value("${create.schema}")
     private String createSchema;
-    @Value("${query.set.schema}")
+    @Value("${set.schema}")
     private String setSchema;
-    @Value("${query.create.table}")
+    @Value("${create.table}")
     private String createTable;
+    @Value("${select.currentSchema}")
+    private String selectCurrentSchema;
+    @Value("${insert.membersOfCac40}")
+    private String insertMembersOfCac40;
+    @Value("${select.membersOfCac40}")
+    private String selectMembersOfCac40;
+
 
     public String getListTables() {
         return listTables;
@@ -30,5 +37,17 @@ public class SQLQueryResolver {
 
     public String getCreateTable() {
         return createTable;
+    }
+
+    public String getSelectCurrentSchema() {
+        return selectCurrentSchema;
+    }
+
+    public String getInsertMembersOfCac40() {
+        return insertMembersOfCac40;
+    }
+
+    public String getSelectMembersOfCac40() {
+        return selectMembersOfCac40;
     }
 }
