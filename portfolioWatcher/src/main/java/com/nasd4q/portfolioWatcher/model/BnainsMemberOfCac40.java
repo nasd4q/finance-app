@@ -10,7 +10,7 @@ import java.time.LocalDate;
                             (3) fields final
                             (4) fields private
                             (5) exclusive access to any mutable components (here none)
-   (See Effective Java, Joshua Bloch, 2nd Edition, page 73)
+   (Effective Java, Joshua Bloch, 2nd Edition, page 73)
  */
 public final class BnainsMemberOfCac40 {
     private final Integer rowId;
