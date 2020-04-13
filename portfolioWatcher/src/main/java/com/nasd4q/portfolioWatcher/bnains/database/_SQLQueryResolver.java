@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource("classpath:sql.properties")
+@PropertySource("classpath:bnainsSQL/sql.properties")
 class _SQLQueryResolver {
     @Value("${select.userCreatedTables}")
     private String listTables;
