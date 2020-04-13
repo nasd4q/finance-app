@@ -1,6 +1,5 @@
 package com.nasd4q.portfolioWatcher.bnains.datafetch;
 
-import com.nasd4q.portfolioWatcher.bnains.entities.BStock;
 import com.nasd4q.portfolioWatcher.databundles.Stock;
 import com.nasd4q.portfolioWatcher.operations.dependencies.Cac40DataFetcher;
 
@@ -23,7 +22,7 @@ public class BCac40DataFetcher implements Cac40DataFetcher {
 
 
     /**
-     * NB : les Stocks retournés sont immutables (BStock)
+     * @implNote : returned Stocks of class Stock.Immutable
      */
     @Override
     public Collection<Stock> fetchMembers(LocalDate date) {
@@ -57,7 +56,7 @@ public class BCac40DataFetcher implements Cac40DataFetcher {
      *            lors de la demande des membres du cac40 à une date donnée
      * @return l'action (implementation BStock) correspondante, null si échec
      */
-    private Stock StockFromRow(Element row) {
+    private Stock.Immutable StockFromRow(Element row) {
         if (row == null)
             return null;
 
@@ -65,7 +64,7 @@ public class BCac40DataFetcher implements Cac40DataFetcher {
 
         if (tds==null || tds.size()!=3)
             return null;
-        return new BStock(tds.get(0).text(),tds.get(1).text(),tds.get(2).text());
+        return Stock.from(tds.get(0).text(),tds.get(1).text(),tds.get(2).text());
     }
 
     /**

@@ -1,8 +1,7 @@
 package com.nasd4q.portfolioWatcher.bnains.database;
 
-import com.nasd4q.portfolioWatcher.bnains.entities.BCac40Member;
-import com.nasd4q.portfolioWatcher.bnains.entities.BStock;
 import com.nasd4q.portfolioWatcher.databundles.Cac40Member;
+import com.nasd4q.portfolioWatcher.databundles.Stock;
 import com.nasd4q.portfolioWatcher.operations.dependencies.Cac40Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -53,9 +52,8 @@ public class BnainsMembershipRepository implements Cac40Repository {
     @Override
     public Collection<Cac40Member> findAll() {
         return jdbcTemplate.query(queryResolver.getSelectMembersOfCac40(),
-                (resultSet, row) -> new BCac40Member(
-                        resultSet.getInt("row_id"),
-                        new BStock(resultSet.getString("code_isin"),
+                (resultSet, row) -> Cac40Member.from(
+                        Stock.from(resultSet.getString("code_isin"),
                                 resultSet.getString("code_sicovam"),
                                 resultSet.getString("nom")),
                         LocalDate.parse(resultSet.getString("date"),
