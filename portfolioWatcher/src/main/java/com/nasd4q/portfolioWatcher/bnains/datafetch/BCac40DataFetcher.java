@@ -1,6 +1,9 @@
-package com.nasd4q.portfolioWatcher.datafetch;
+package com.nasd4q.portfolioWatcher.bnains.datafetch;
 
-import com.nasd4q.portfolioWatcher.model.Stock;
+import com.nasd4q.portfolioWatcher.bnains.entities.BStock;
+import com.nasd4q.portfolioWatcher.databundles.Stock;
+import com.nasd4q.portfolioWatcher.operations.dependencies.Cac40DataFetcher;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,30 +14,24 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class Cac40Lister {
-    /**
-     * @param date
-     * @return la liste des actions faisant partie du cac40 à la date donnée
-     * @throws IOException
-     */
-    //TODO gérer mieux cette IOException
-    public List<Stock> getList(LocalDate date) throws IOException {
+public class BCac40DataFetcher implements Cac40DataFetcher {
 
-        //1. requête POST avec un form data contenant un champ : date_input
-        Connection.Response response =
-                Jsoup.connect("https://www.bnains.org/archives/histocac/compocac.php")
-                        .userAgent("Mozilla/5.0")
-                        .timeout(10 * 1000)
-                        .method(Connection.Method.POST)
-                        .data("date_input",  date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
-                        .execute();
+
+    /**
+     * NB : les Stocks retournés sont immutables (BStock)
+     */
+    @Override
+    public Collection<Stock> fetchMembers(LocalDate date) {
+
+        //1. obtention du document html contenant les infos
+        Document document = this.getCompoCac40DocFromBnains(date);
 
         //2. extraction des éléments pertinents
-        Document document = response.parse();
         Element table = document.select("table").get(0);
         Elements rows = table.select("tr");
 
@@ -56,10 +53,9 @@ public class Cac40Lister {
     }
 
     /**
-     *
      * @param row telle que fournie par https://www.bnains.org/archives/histocac/compocac.php
      *            lors de la demande des membres du cac40 à une date donnée
-     * @return l'action (Stock) correspondante, null si échec
+     * @return l'action (implementation BStock) correspondante, null si échec
      */
     private Stock StockFromRow(Element row) {
         if (row == null)
@@ -69,6 +65,29 @@ public class Cac40Lister {
 
         if (tds==null || tds.size()!=3)
             return null;
-        return new Stock(tds.get(0).text(),tds.get(1).text(),tds.get(2).text());
+        return new BStock(tds.get(0).text(),tds.get(1).text(),tds.get(2).text());
+    }
+
+    /**
+     * @return le document html obtenu sur www.bnains.org pour la composition
+     * du CAC 40 à la date donnée, ou bien null
+     */
+    private Document getCompoCac40DocFromBnains(LocalDate date) {
+        Connection connection = Jsoup
+                .connect("https://www.bnains.org/archives/histocac/compocac.php")
+                .userAgent("Mozilla/5.0")
+                .timeout(10 * 1000)
+                .method(Connection.Method.POST)
+                .data("date_input", date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
+        Connection.Response response = null;
+        Document document = null;
+        try {
+            response = connection.execute();
+            document = response.parse();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return document;
     }
 }

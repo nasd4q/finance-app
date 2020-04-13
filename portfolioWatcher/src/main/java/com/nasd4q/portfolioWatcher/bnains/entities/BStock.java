@@ -1,11 +1,13 @@
-package com.nasd4q.portfolioWatcher.model;
+package com.nasd4q.portfolioWatcher.bnains.entities;
 
-public final class Stock {
-    final private String codeIsin;
-    final private String codeSicovam;
-    final private String nom;
+import com.nasd4q.portfolioWatcher.databundles.Stock;
 
-    public Stock(String codeIsin, String codeSicovam, String nom) {
+public final class BStock implements Stock {
+    private final String codeIsin;
+    private final String codeSicovam;
+    private final String nom;
+
+    public BStock(String codeIsin, String codeSicovam, String nom) {
         this.codeIsin = codeIsin;
         this.codeSicovam = codeSicovam;
         this.nom = nom;

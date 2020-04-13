@@ -1,5 +1,6 @@
-package com.nasd4q.portfolioWatcher.database;
+package com.nasd4q.portfolioWatcher.bnains.database;
 
+import com.nasd4q.portfolioWatcher.bnains.database._SQLQueryResolver;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

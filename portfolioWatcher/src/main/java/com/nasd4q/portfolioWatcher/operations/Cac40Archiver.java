@@ -48,7 +48,5 @@ public class Cac40Archiver {
             cac40Repository.addAll(cac40Members);
         }
     }
-
-
 }
 

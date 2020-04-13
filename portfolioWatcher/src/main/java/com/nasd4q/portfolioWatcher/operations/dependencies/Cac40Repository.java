@@ -6,4 +6,5 @@ import java.util.Collection;
 
 public interface Cac40Repository {
     void addAll(Collection<Cac40Member> cac40Members);
+    Collection<Cac40Member> findAll();
 }

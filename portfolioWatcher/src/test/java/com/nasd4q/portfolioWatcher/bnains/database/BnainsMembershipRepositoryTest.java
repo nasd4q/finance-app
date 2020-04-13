@@ -1,6 +1,6 @@
-package com.nasd4q.portfolioWatcher.database;
+package com.nasd4q.portfolioWatcher.bnains.database;
 
-import com.nasd4q.portfolioWatcher.model.BnainsMemberOfCac40;
+import com.nasd4q.portfolioWatcher.bnains.entities.BCac40Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,19 +13,19 @@ public class BnainsMembershipRepositoryTest {
     @Autowired
     private BnainsMembershipRepository repository;
 
-    private BnainsMemberOfCac40 member1 = new BnainsMemberOfCac40(
+    private BCac40Member member1 = new BCac40Member(
             null,
             "FR 123",
             "123 S",
             "SOCIETE 1",
             LocalDate.of(2000, 3, 28));
-    private BnainsMemberOfCac40 member2 = new BnainsMemberOfCac40(
+    private BCac40Member member2 = new BCac40Member(
             null,
             "FR 456",
             "456 S",
             "ALFRED",
             LocalDate.of(1988, 6, 30));
-    private BnainsMemberOfCac40 member3 = new BnainsMemberOfCac40(
+    private BCac40Member member3 = new BCac40Member(
             null,
             "3189123",
             "12390",
@@ -34,14 +34,14 @@ public class BnainsMembershipRepositoryTest {
 
     @Test
     public void addToDB() {
-        repository.addToTable(member1);
-        repository.addToTable(member2);
-        repository.addToTable(member3);
+        repository.add(member1);
+        repository.add(member2);
+        repository.add(member3);
     }
 
     @Test
     public void selectAll() {
-        repository.selectAllFromTable().forEach(System.out::println);
+        repository.findAll().forEach(System.out::println);
     }
 
     @Test void addAndRetrieve() {
