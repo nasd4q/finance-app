@@ -17,7 +17,7 @@ import java.util.Iterator;
 
 
 @Repository
-public class BnainsMembershipRepository implements Cac40Repository {
+public class BCac40Repository implements Cac40Repository {
     private static final String SCHEMA_NAME = "data_from_bnains";
 
     private static Boolean alreadyInitialized = false;
@@ -27,7 +27,7 @@ public class BnainsMembershipRepository implements Cac40Repository {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public BnainsMembershipRepository(_DBManager dbManager, _SQLQueryResolver queryResolver, JdbcTemplate jdbcTemplate) {
+    public BCac40Repository(_DBManager dbManager, _SQLQueryResolver queryResolver, JdbcTemplate jdbcTemplate) {
         this.dbManager = dbManager;
         this.bnainsQueries = queryResolver;
         this.jdbcTemplate = jdbcTemplate;

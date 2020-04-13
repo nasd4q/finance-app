@@ -9,10 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 
 @SpringBootTest
-public class BnainsMembershipRepositoryTest {
+public class BCac40RepositoryTest {
 
     @Autowired
-    private BnainsMembershipRepository repository;
+    private BCac40Repository repository;
 
     private Stock s1 = Stock.from("FR 123",
             "123 S",

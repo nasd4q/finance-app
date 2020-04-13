@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.databundles;
 
-public interface Stock extends Asset {
+public interface Stock {
     String getCodeIsin();
     String getCodeSicovam();
     String getNom();

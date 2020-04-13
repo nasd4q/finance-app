@@ -5,6 +5,7 @@ import com.nasd4q.portfolioWatcher.databundles.Portfolio;
 import com.nasd4q.portfolioWatcher.operations.dependencies.QuoteRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 public class PortfolioManager {
@@ -19,13 +20,13 @@ public class PortfolioManager {
 
     /**
      * QUESTION : unit ?
-     * @param date at which the porfolio is valued
+     * @param datetime at which the porfolio is valued
      * @return the total value of the portfolio
      */
-    public float getValue(LocalDate date) {
-        Collection<Asset> assets = portfolio.getAssets(date);
+    public Double getValue(LocalDateTime datetime) {
+        Collection<Asset> assets = portfolio.getAssets(datetime);
         return assets.stream()
-                .map(a->portfolio.getAmount(a,date)*quoteRepository.getValue(a,date))
-                .reduce(0f, (f,g)->f+g);
+                .map(a->portfolio.getAmount(a,datetime)*quoteRepository.getValue(a,datetime))
+                .reduce(0.0, (f,g)->f+g);
     }
 }
