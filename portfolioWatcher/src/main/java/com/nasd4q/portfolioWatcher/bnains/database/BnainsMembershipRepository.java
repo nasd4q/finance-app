@@ -23,13 +23,13 @@ public class BnainsMembershipRepository implements Cac40Repository {
     private static Boolean alreadyInitialized = false;
 
     private _DBManager dbManager;
-    private _SQLQueryResolver queryResolver;
+    private _SQLQueryResolver bnainsQueries;
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
     public BnainsMembershipRepository(_DBManager dbManager, _SQLQueryResolver queryResolver, JdbcTemplate jdbcTemplate) {
         this.dbManager = dbManager;
-        this.queryResolver = queryResolver;
+        this.bnainsQueries = queryResolver;
         this.jdbcTemplate = jdbcTemplate;
         initializeTable(true);
     }
@@ -38,11 +38,11 @@ public class BnainsMembershipRepository implements Cac40Repository {
         if (alreadyInitialized && lazy)
             return;
         dbManager.createAndSetCurrentSchema(SCHEMA_NAME);
-        jdbcTemplate.update(queryResolver.getCreateTable());
+        jdbcTemplate.update(bnainsQueries.getCreateTable());
     }
 
     public void add(Cac40Member member) {
-        jdbcTemplate.update(queryResolver.getInsertMembersOfCac40(),
+        jdbcTemplate.update(bnainsQueries.getInsertMembersOfCac40(),
                 member.getStock().getCodeIsin(),
                 member.getStock().getCodeSicovam(),
                 member.getStock().getNom(),
@@ -51,7 +51,7 @@ public class BnainsMembershipRepository implements Cac40Repository {
 
     @Override
     public Collection<Cac40Member> findAll() {
-        return jdbcTemplate.query(queryResolver.getSelectMembersOfCac40(),
+        return jdbcTemplate.query(bnainsQueries.getSelectMembersOfCac40(),
                 (resultSet, row) -> Cac40Member.from(
                         Stock.from(resultSet.getString("code_isin"),
                                 resultSet.getString("code_sicovam"),
@@ -63,7 +63,7 @@ public class BnainsMembershipRepository implements Cac40Repository {
     @Override
     public void addAll(Collection<Cac40Member> cac40Members) {
         Iterator<Cac40Member> iterator = cac40Members.iterator();
-        String Query = queryResolver.getInsertMembersOfCac40();
+        String Query = bnainsQueries.getInsertMembersOfCac40();
 
         jdbcTemplate.batchUpdate(Query, new BatchPreparedStatementSetter() {
             @Override

@@ -22,7 +22,7 @@ public class BCac40DataFetcher implements Cac40DataFetcher {
 
 
     /**
-     * @implNote : returned Stocks of class Stock.Immutable
+     * @implNote returns Stocks of class Stock.Immutable
      */
     @Override
     public Collection<Stock> fetchMembers(LocalDate date) {
