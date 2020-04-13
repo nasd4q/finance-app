@@ -5,6 +5,8 @@ public interface Stock extends Asset {
     String getCodeSicovam();
     String getNom();
 
+    // ******* static ******* //
+
     /**
      * @return an immutable version.
      */

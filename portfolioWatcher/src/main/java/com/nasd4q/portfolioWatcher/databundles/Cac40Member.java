@@ -10,6 +10,8 @@ public interface Cac40Member {
     Stock getStock();
     LocalDate getDate();
 
+    // ******* static ******* //
+
     /**
      * @return an immutable version.
      */
