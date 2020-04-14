@@ -11,8 +11,10 @@ public class QuoteRepositoryTest {
     QuoteRepositoryImpl repository;
 
     @Test
-    public void printContent() {
-        repository.findAll().forEach(System.out::println);
+    public void loadEverything() {
+        repository.loadDataFromBnains();
     }
+
+
 
 }

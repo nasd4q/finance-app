@@ -3,6 +3,10 @@
 SELECT table_schema, table_name FROM information_schema.tables
 WHERE table_schema='public' or table_schema='data_from_bnains';
 
+SELECT table_schema, table_name FROM information_schema.tables
+WHERE NOT table_schema='information_schema' AND NOT table_schema='pg_catalog';
+
+
 -- Create schema
 CREATE SCHEMA IF NOT EXISTS data_from_bnains;
 

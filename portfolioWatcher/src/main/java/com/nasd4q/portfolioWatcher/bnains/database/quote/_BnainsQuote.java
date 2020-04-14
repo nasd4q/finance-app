@@ -24,7 +24,7 @@ class _BnainsQuote {
                     "high decimal," +
                     "low decimal," +
                     "close decimal," +
-                    "volume integer" +
+                    "volume integer," +
                     "date date" +
                     ");";
 
@@ -61,7 +61,7 @@ class _BnainsQuote {
 
         StringBuilder nom = new StringBuilder(parts[1]);
         for (int i = 2; i < nomPartEndIndex; i++)
-            nom.append(parts[i]);
+            nom.append(" " + parts[i]);
 
         return new _BnainsQuote(null,
                 parts[0],
@@ -75,7 +75,7 @@ class _BnainsQuote {
     }
 
     public _BnainsQuote withId(Long id) {
-        logger.info("withId() called");
+        //logger.info("withId() called");
         return new _BnainsQuote(id, this.code, this.nom, this.open,
                 this.high, this.low, this.close, this.volume, this.date);
     }

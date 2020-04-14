@@ -5,5 +5,5 @@ import com.nasd4q.portfolioWatcher.databundles.Asset;
 import java.time.LocalDateTime;
 
 public interface QuoteRepository {
-    float getValue(Asset asset, LocalDateTime datetime);
+    double getValue(Asset asset, LocalDateTime datetime);
 }
