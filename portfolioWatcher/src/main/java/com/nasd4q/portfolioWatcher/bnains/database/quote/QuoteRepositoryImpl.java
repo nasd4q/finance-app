@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -61,7 +62,11 @@ public class QuoteRepositoryImpl implements QuoteRepository {
                 filesToLookInto.addAll(List.of(filesArray));
             } else {
                 System.out.println("FILE");
-                repository.saveAll(fileToQuotes(currentFile));
+                if (currentFile.getName().matches("^[0-9]{8}[\\s\\S]*"))
+                {
+                    System.out.println("Adding to repository : " + currentFile.getName());
+                    repository.saveAll(fileToQuotes(currentFile));
+                }
             }
         }
     }
@@ -89,6 +94,22 @@ public class QuoteRepositoryImpl implements QuoteRepository {
         ArrayList<String> result = new ArrayList<>();
 
         try (Scanner s = new Scanner(new FileReader(file))) {
+            if (s.hasNext()) {
+                String lineOne = s.nextLine();
+                String notGoodline = "CODE	LIBELLE	PREMIER	PLUS HAUT	PLUS BAS	DERNIER	VOLUME";
+                String[] lineOneSplit = lineOne.split("\\s+");
+                String[] notGoodSplit = notGoodline.split("\\s+");
+                int score = 0;
+                int i;
+                for (i=0; i<lineOneSplit.length && i<9;i++) {
+                    if (lineOneSplit[i].equalsIgnoreCase(notGoodSplit[i]))
+                        score++;
+                }
+
+                if (score<i)
+                    result.add(lineOne);
+            }
+
             while (s.hasNext()) {
                 result.add(s.nextLine());
             }

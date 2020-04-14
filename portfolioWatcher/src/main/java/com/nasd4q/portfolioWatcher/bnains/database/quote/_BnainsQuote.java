@@ -19,12 +19,12 @@ class _BnainsQuote {
                     "CREATE TABLE IF NOT EXISTS data_from_bnains.quotes(" +
                     "id serial PRIMARY KEY," +
                     "code VARCHAR(30)," +
-                    "nom VARCHAR(50)," +
+                    "nom text," +
                     "open decimal," +
                     "high decimal," +
                     "low decimal," +
                     "close decimal," +
-                    "volume integer," +
+                    "volume bigint," +
                     "date date" +
                     ");";
 
@@ -66,10 +66,10 @@ class _BnainsQuote {
         return new _BnainsQuote(null,
                 parts[0],
                 nom.toString(),
-                Double.valueOf(parts[parts.length - 5]),
-                Double.valueOf(parts[parts.length - 4]),
-                Double.valueOf(parts[parts.length - 3]),
-                Double.valueOf(parts[parts.length - 2]),
+                Double.valueOf(parts[parts.length - 5].replace(',','.')),
+                Double.valueOf(parts[parts.length - 4].replace(',','.')),
+                Double.valueOf(parts[parts.length - 3].replace(',','.')),
+                Double.valueOf(parts[parts.length - 2].replace(',','.')),
                 Long.valueOf(parts[parts.length - 1]),
                 date);
     }
