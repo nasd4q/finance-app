@@ -30,11 +30,6 @@ build/
 ### VS Code ###
 .vscode/
 
-PostgresTestVolume/
-PgVol/
 **/data from www-bnains-org/
+**/ABCBourseSeleniumDownloads/
 .DS_Store
-*/.DS_Store
-portfolioWatcher/src/main/resources/.DS_Store
-portfolioWatcher/src/main/resources/data\ from\ www-bnains-org/
-portfolioWatcher/src/main/resources/data from www-bnains-org/
