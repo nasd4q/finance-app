@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-class _BnainsQuoteDBInitializer implements InitializingBean {
+class _BQuoteDBInitializer implements InitializingBean {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -17,7 +17,7 @@ class _BnainsQuoteDBInitializer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        jdbcTemplate.update(_BnainsQuote.SCHEMA_SQL);
+        jdbcTemplate.update(_BQuote.SCHEMA_SQL);
         logger.info("_BnainsQuote.SCHEMA_SQL executed");
     }
 }

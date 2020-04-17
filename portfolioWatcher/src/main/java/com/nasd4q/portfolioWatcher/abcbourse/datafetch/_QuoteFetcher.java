@@ -28,7 +28,9 @@ class _QuoteFetcher {
 
     @Value("classpath:ABCBourseJS/setDateAndClickDownload.js")
     private Resource jsSetDateAndClick;
-    private File downloadFolder = new File("src/main/resources/ABCBourseSeleniumDownloads");
+
+    private static final File DOWNLOAD_FOLDER =
+            new File("src/main/resources/ABCBourseSeleniumDownloads");
 
     private static final String ABC_BOURSE_DOWNLOAD_URL =
             "https://www.abcbourse.com/download/historiques.aspx";
@@ -39,7 +41,7 @@ class _QuoteFetcher {
         if (driver != null)
             return;
 
-        String path = downloadFolder.getCanonicalPath();
+        String path = DOWNLOAD_FOLDER.getCanonicalPath();
         logger.info(path + " is the path for selenium downloads");
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -98,7 +100,7 @@ class _QuoteFetcher {
                 dates.add(d);
             }
         }
-        File dwnldFolder = downloadFolder;
+        File dwnldFolder = DOWNLOAD_FOLDER;
         for (File f : dwnldFolder.listFiles()) {
             final LocalDate dateForWhichExistsFile = parseDateFromFileName(f.getName());
             dates.remove(dateForWhichExistsFile);

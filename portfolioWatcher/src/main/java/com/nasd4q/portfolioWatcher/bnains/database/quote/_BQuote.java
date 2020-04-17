@@ -7,12 +7,19 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 
-@Table("data_from_bnains.quotes")
-class _BnainsQuote {
+
+/* Spring data JDBC recommends, for generated - repository entites :
+    - immutable objects
+    - only one public all args contructor
+    - withId method that allows to set Id from existing entity
+ */
+@Table(_BQuote.TABLE_NAME)
+public class _BQuote {
 
     private static final Logger logger = LoggerFactory.getLogger(
-            _BnainsQuote.class);
+            _BQuote.class);
 
+    static final String TABLE_NAME = "data_from_bnains.quotes";
     static final String SCHEMA_SQL =
             "CREATE SCHEMA IF NOT EXISTS data_from_bnains;\n" +
                     "\n" +
@@ -35,7 +42,8 @@ class _BnainsQuote {
     private final Long volume;
     private final LocalDate date;
 
-    public _BnainsQuote(Long id, String code, String nom, Double open, Double high, Double low, Double close, Long volume, LocalDate date) {
+    /* public all args unique constructor */
+    public _BQuote(Long id, String code, String nom, Double open, Double high, Double low, Double close, Long volume, LocalDate date) {
         this.id = id;
         this.code = code;
         this.nom = nom;
@@ -47,14 +55,12 @@ class _BnainsQuote {
         this.date = date;
     }
 
-    //
 
     /**
      * @param s de la forme
      *          3180	DEVANLAY S.A.	1288.00	1288.00	1230.00	1231.00	397
      */
-    public static _BnainsQuote of(String s, LocalDate date) {
-
+    public static _BQuote of(String s, LocalDate date) {
         String[] parts = s.split("\\s+");
 
         int nomPartEndIndex = 2 + parts.length - 7;
@@ -63,7 +69,7 @@ class _BnainsQuote {
         for (int i = 2; i < nomPartEndIndex; i++)
             nom.append(" " + parts[i]);
 
-        return new _BnainsQuote(null,
+        return new _BQuote(null,
                 parts[0],
                 nom.toString(),
                 Double.valueOf(parts[parts.length - 5].replace(',','.')),
@@ -74,9 +80,10 @@ class _BnainsQuote {
                 date);
     }
 
-    public _BnainsQuote withId(Long id) {
+    /* recomended for spring data JDBC repositories */
+    public _BQuote withId(Long id) {
         //logger.info("withId() called");
-        return new _BnainsQuote(id, this.code, this.nom, this.open,
+        return new _BQuote(id, this.code, this.nom, this.open,
                 this.high, this.low, this.close, this.volume, this.date);
     }
 

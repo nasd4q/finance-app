@@ -1,46 +1,64 @@
 package com.nasd4q.portfolioWatcher.bnains.database.quote;
 
+import com.nasd4q.portfolioWatcher.bnains.database.quote.dependencies.AssetRepository;
 import com.nasd4q.portfolioWatcher.databundles.Asset;
 import com.nasd4q.portfolioWatcher.operations.dependencies.QuoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component
-public class QuoteRepositoryImpl implements QuoteRepository {
 
-    private _BnainsQuoteRepository repository;
+@Component
+/**
+ * Repository class for managing quote data obtained from www.bnains.org
+ * Public methods : void loadDataIntoDB(), double getValue(Asset asset, LocalDateTime datetime)
+ */
+public class BQuoteRepository implements QuoteRepository {
+
+    private static final File B_DATA_FOLDER =
+            new File("src/main/resources/data from www-bnains-org");
+
+
+
+    /* ******************************************************
+     *******        Dependencies + constructor        *******
+     ****************************************************** */
+
+    private _BQuoteRepository bQuoteRepository;
+
+    private AssetRepository assetRepository;
 
     @Autowired
-    public QuoteRepositoryImpl(_BnainsQuoteRepository repository) {
-        this.repository = repository;
+    public BQuoteRepository(_BQuoteRepository bQuoteRepository, AssetRepository assetRepository) {
+        this.bQuoteRepository = bQuoteRepository;
+        this.assetRepository = assetRepository;
     }
 
-    public void loadDataFromBnains(){
+
+
+    /* ******************************************************
+     *******                Class API                 *******
+     ****************************************************** */
+
+    /**
+     * Examines all (recursive) files present inside B_DATA_FOLDER.
+     * If file name starts with at least 8 digits, then tries to parse
+     * the file into a bunch of quotes (of class _BQuote) and saves them all to DB,
+     * parsing file name as quote date.
+     */
+    public void loadDataIntoDB(){
         System.out.println("debut");
 
-        Resource resource = new ClassPathResource("data from www-bnains-org");
-
-        File file = null;
-        try {
-            file = resource.getFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         Stack<File> filesToLookInto = new Stack<>();
-        filesToLookInto.push(file);
+        filesToLookInto.push(B_DATA_FOLDER);
         File currentFile = null;
         while (!filesToLookInto.empty()) {
             currentFile = filesToLookInto.pop();
@@ -63,19 +81,27 @@ public class QuoteRepositoryImpl implements QuoteRepository {
                 if (currentFile.getName().matches("^[0-9]{8}[\\s\\S]*"))
                 {
                     System.out.println("Adding to repository : " + currentFile.getName());
-                    repository.saveAll(fileToQuotes(currentFile));
+                    bQuoteRepository.saveAll(fileToQuotes(currentFile));
                 }
             }
         }
     }
 
     @Override
-    public double getValue(Asset asset, LocalDateTime datetime) {
+    public Double getValue(Asset asset, LocalDateTime datetime) {
         //TODO
+        assetRepository.getAssetAvatars(asset);
+        bQuoteRepository.getLatestQuote
         return 0;
     }
 
-    private List<_BnainsQuote> fileToQuotes(File file) {
+
+
+    /* ******************************************************
+     *******        private "helper" functions        *******
+     ****************************************************** */
+
+    private List<_BQuote> fileToQuotes(File file) {
         //filename : src/main/resources/data from www-bnains-org/1994/19940104.TXT
         String filename = file.getName();
         LocalDate date = LocalDate.parse(filename.substring(
@@ -84,7 +110,7 @@ public class QuoteRepositoryImpl implements QuoteRepository {
                 DateTimeFormatter.BASIC_ISO_DATE);
 
         return fileToList(file).stream()
-                .map(s->_BnainsQuote.of(s, date ))
+                .map(s-> _BQuote.of(s, date ))
                 .collect(Collectors.toList());
     }
 

@@ -8,11 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class QuoteRepositoryTest {
 
     @Autowired
-    QuoteRepositoryImpl repository;
+    BQuoteRepository repository;
 
     @Test
     public void loadEverything() {
-        repository.loadDataFromBnains();
+        repository.loadDataIntoDB();
     }
 
 
