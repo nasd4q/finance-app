@@ -3,6 +3,7 @@ package com.nasd4q.portfolioWatcher.bnains.database.quote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
@@ -13,8 +14,11 @@ import java.time.LocalDate;
     - only one public all args contructor
     - withId method that allows to set Id from existing entity
  */
+/*
+        WARNING - This entity class depends on a table which references finance.assets TABLE
+ */
 @Table(_BQuote.TABLE_NAME)
-public class _BQuote {
+class _BQuote {
 
     private static final Logger logger = LoggerFactory.getLogger(
             _BQuote.class);
@@ -32,7 +36,8 @@ public class _BQuote {
                     "low decimal," +
                     "close decimal," +
                     "volume bigint," +
-                    "date date" +
+                    "date date," +
+                    "asset_id integer REFERENCES finance.assets (id)" +
                     ");";
 
     @Id
@@ -41,9 +46,12 @@ public class _BQuote {
     private final Double open, high, low, close;
     private final Long volume;
     private final LocalDate date;
+    @Column("asset_id")
+    private final Long assetId;
 
     /* public all args unique constructor */
-    public _BQuote(Long id, String code, String nom, Double open, Double high, Double low, Double close, Long volume, LocalDate date) {
+
+    public _BQuote(Long id, String code, String nom, Double open, Double high, Double low, Double close, Long volume, LocalDate date, Long assetId) {
         this.id = id;
         this.code = code;
         this.nom = nom;
@@ -53,8 +61,8 @@ public class _BQuote {
         this.close = close;
         this.volume = volume;
         this.date = date;
+        this.assetId = assetId;
     }
-
 
     /**
      * @param s de la forme
@@ -77,19 +85,20 @@ public class _BQuote {
                 Double.valueOf(parts[parts.length - 3].replace(',','.')),
                 Double.valueOf(parts[parts.length - 2].replace(',','.')),
                 Long.valueOf(parts[parts.length - 1]),
-                date);
+                date,
+                null);
     }
 
     /* recomended for spring data JDBC repositories */
     public _BQuote withId(Long id) {
         //logger.info("withId() called");
         return new _BQuote(id, this.code, this.nom, this.open,
-                this.high, this.low, this.close, this.volume, this.date);
+                this.high, this.low, this.close, this.volume, this.date, this.assetId);
     }
 
     @Override
     public String toString() {
-        return "_BnainsQuote{" +
+        return "_BQuote{" +
                 "id=" + id +
                 ", code='" + code + '\'' +
                 ", nom='" + nom + '\'' +
@@ -99,6 +108,7 @@ public class _BQuote {
                 ", close=" + close +
                 ", volume=" + volume +
                 ", date=" + date +
+                ", assetId=" + assetId +
                 '}';
     }
 }

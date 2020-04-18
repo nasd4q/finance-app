@@ -32,9 +32,9 @@ public class BQuoteRepository implements QuoteRepository {
      *******        Dependencies + constructor        *******
      ****************************************************** */
 
-    private _BQuoteRepository bQuoteRepository;
+    private final _BQuoteRepository bQuoteRepository;
 
-    private AssetRepository assetRepository;
+    private final AssetRepository assetRepository;
 
     @Autowired
     public BQuoteRepository(_BQuoteRepository bQuoteRepository, AssetRepository assetRepository) {
@@ -90,9 +90,9 @@ public class BQuoteRepository implements QuoteRepository {
     @Override
     public Double getValue(Asset asset, LocalDateTime datetime) {
         //TODO
-        assetRepository.getAssetAvatars(asset);
-        bQuoteRepository.getLatestQuote
-        return 0;
+        //assetRepository.getAssetAvatars(asset);
+        //bQuoteRepository.getLatestQuote   ????
+        return 0.0;
     }
 
 

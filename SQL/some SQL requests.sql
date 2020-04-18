@@ -1,3 +1,5 @@
+-- connect : psql "dbname=postgres host=localhost user=postgres password=docker port=9432"
+
 
 -- List tables in some schemas ...
 SELECT table_schema, table_name FROM information_schema.tables
@@ -46,4 +48,14 @@ FROM quotes
 GROUP BY code, nom, open, high, low, close, volume, date
 ) as KeepRows ON quotes.id = KeepId
 WHERE KeepId IS NULL;
-                                                                                                                                                                                                                            LEFT OUTER JOIN                                                                                                                                                                                                                                                             (                                                                                                                                                                                                                                                                           SELECT min(id) as KeepId, code, nom, open, high, low, close, volume, date                                                                                                                                                                                                   FROM quotes                                                                                                                                                                                                                                                                 GROUP BY code, nom, open, high, low, close, volume, date                                                                                                                                                                                                                    ) as KeepRows                                                                                                                                                                                                                                                               ON q1.id = KeepId                                                                                                                                                                                                                                                           WHERE quotes.id = q1.id AND KeepId IS NULL;
+
+-- add column
+ALTER TABLE data_from_bnains.quotes
+ADD COLUMN asset_id integer;
+
+ALTER TABLE data_from_bnains.quotes
+ADD CONSTRAINT fk_asset_id FOREIGN KEY (asset_id) REFERENCES finance.assets (id);
+
+-- drop constraint
+ALTER TABLE data_from_bnains.quotes
+DROP CONSTRAINT fk_asset_id;
