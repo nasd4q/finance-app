@@ -30,6 +30,5 @@ build/
 ### VS Code ###
 .vscode/
 
-**/data from www-bnains-org/
-**/ABCBourseSeleniumDownloads/
+**/src/main/resources/data/
 .DS_Store
