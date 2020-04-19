@@ -43,7 +43,6 @@ public class BQuoteRepository implements QuoteRepository {
     }
 
 
-
     /* ******************************************************
      *******                Class API                 *******
      ****************************************************** */
@@ -95,7 +94,9 @@ public class BQuoteRepository implements QuoteRepository {
         return 0.0;
     }
 
-
+    void associateAssetId() {
+        //TODO
+    }
 
     /* ******************************************************
      *******        private "helper" functions        *******

@@ -15,5 +15,11 @@ public class _AssetDBInitializerTest {
 
     }
 
+    @Test
+    public void seeConstraintStatements() {
+        System.out.println(_AssetIdentification.ADD_CONSTRAINT_CHECK_TYPE);
+        System.out.println(_AssetIdentification.ADD_CONSTRAINT_UNIQUE_IDENTITY);
+    }
+
 
 }

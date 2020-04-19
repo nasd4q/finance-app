@@ -15,7 +15,7 @@ import java.time.LocalDate;
     - withId method that allows to set Id from existing entity
  */
 /*
-        WARNING - This entity class depends on a table which references finance.assets TABLE
+        WARNING - This entity class depends on a table which references assets.assets TABLE
  */
 @Table(_BQuote.TABLE_NAME)
 class _BQuote {
@@ -37,7 +37,7 @@ class _BQuote {
                     "close decimal," +
                     "volume bigint," +
                     "date date," +
-                    "asset_id integer REFERENCES finance.assets (id)" +
+                    "asset_id integer REFERENCES assets.assets (id)" +
                     ");";
 
     @Id

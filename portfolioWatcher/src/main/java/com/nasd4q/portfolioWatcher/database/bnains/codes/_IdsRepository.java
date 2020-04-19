@@ -1,8 +1,8 @@
-package com.nasd4q.portfolioWatcher.database.asset;
+package com.nasd4q.portfolioWatcher.database.bnains.codes;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-interface _AssetRepository extends CrudRepository<_Asset, Long> {
+interface _IdsRepository extends CrudRepository<_Ids,Long> {
 }

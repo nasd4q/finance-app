@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-interface _AssetRepository extends CrudRepository<_Asset, Long> {
+interface  _AssetIdentificationRepository extends CrudRepository<_AssetIdentification, Long> {
 }
