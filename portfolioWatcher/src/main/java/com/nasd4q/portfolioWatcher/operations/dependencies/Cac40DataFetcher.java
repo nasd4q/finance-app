@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.operations.dependencies;
 
-import com.nasd4q.portfolioWatcher.databundles.Stock;
+import com.nasd4q.portfolioWatcher.datatypes.Stock;
 
 import java.time.LocalDate;
 import java.util.Collection;

@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.datafetch.bnains;
 
-import com.nasd4q.portfolioWatcher.databundles.Stock;
+import com.nasd4q.portfolioWatcher.datatypes.Stock;
 import com.nasd4q.portfolioWatcher.operations.dependencies.Cac40DataFetcher;
 
 import org.jsoup.Connection;

@@ -1,7 +1,7 @@
 package com.nasd4q.portfolioWatcher.database.bnains.cac40;
 
-import com.nasd4q.portfolioWatcher.databundles.Cac40Member;
-import com.nasd4q.portfolioWatcher.databundles.Stock;
+import com.nasd4q.portfolioWatcher.datatypes.Cac40Member;
+import com.nasd4q.portfolioWatcher.datatypes.Stock;
 import com.nasd4q.portfolioWatcher.operations.dependencies.Cac40Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;

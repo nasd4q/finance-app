@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.operations;
 
-import com.nasd4q.portfolioWatcher.databundles.Cac40Member;
+import com.nasd4q.portfolioWatcher.datatypes.Cac40Member;
 import com.nasd4q.portfolioWatcher.operations.dependencies.Cac40Repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

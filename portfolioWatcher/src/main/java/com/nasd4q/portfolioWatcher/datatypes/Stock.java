@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.databundles;
+package com.nasd4q.portfolioWatcher.datatypes;
 
 public interface Stock {
     String getCodeIsin();

@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.databundles;
+package com.nasd4q.portfolioWatcher.datatypes;
 
 import java.time.LocalDate;
 

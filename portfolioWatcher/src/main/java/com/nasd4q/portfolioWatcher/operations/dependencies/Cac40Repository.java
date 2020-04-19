@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.operations.dependencies;
 
-import com.nasd4q.portfolioWatcher.databundles.Cac40Member;
+import com.nasd4q.portfolioWatcher.datatypes.Cac40Member;
 
 import java.util.Collection;
 

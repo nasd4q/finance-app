@@ -1,7 +1,7 @@
 package com.nasd4q.portfolioWatcher.database.bnains.cac40;
 
-import com.nasd4q.portfolioWatcher.databundles.Cac40Member;
-import com.nasd4q.portfolioWatcher.databundles.Stock;
+import com.nasd4q.portfolioWatcher.datatypes.Cac40Member;
+import com.nasd4q.portfolioWatcher.datatypes.Stock;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 package com.nasd4q.portfolioWatcher.operations;
 
-import com.nasd4q.portfolioWatcher.databundles.Asset;
-import com.nasd4q.portfolioWatcher.databundles.Portfolio;
+import com.nasd4q.portfolioWatcher.datatypes.Asset;
+import com.nasd4q.portfolioWatcher.datatypes.Portfolio;
 import com.nasd4q.portfolioWatcher.operations.dependencies.QuoteRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

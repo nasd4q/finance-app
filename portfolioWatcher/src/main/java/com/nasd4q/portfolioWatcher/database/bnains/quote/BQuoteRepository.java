@@ -1,7 +1,7 @@
 package com.nasd4q.portfolioWatcher.database.bnains.quote;
 
 import com.nasd4q.portfolioWatcher.database.bnains.quote.dependencies.AssetRepository;
-import com.nasd4q.portfolioWatcher.databundles.Asset;
+import com.nasd4q.portfolioWatcher.datatypes.Asset;
 import com.nasd4q.portfolioWatcher.operations.dependencies.QuoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
