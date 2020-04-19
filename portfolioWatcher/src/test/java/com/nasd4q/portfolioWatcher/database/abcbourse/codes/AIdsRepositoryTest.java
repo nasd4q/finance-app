@@ -1,15 +1,14 @@
-package com.nasd4q.portfolioWatcher.database.bnains.code;
+package com.nasd4q.portfolioWatcher.database.abcbourse.codes;
 
-import com.nasd4q.portfolioWatcher.database.bnains.codes.IdsRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class IdsRepositoryTest {
+public class AIdsRepositoryTest {
 
     @Autowired
-    private IdsRepository repo;
+    private AIdsRepository repo;
 
     @Test
     public void loadEverything() {

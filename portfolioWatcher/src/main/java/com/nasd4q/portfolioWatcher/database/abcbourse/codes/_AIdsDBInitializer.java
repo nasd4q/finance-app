@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.database.bnains.codes;
+package com.nasd4q.portfolioWatcher.database.abcbourse.codes;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-class _IdsDBInitializer implements InitializingBean {
+class _AIdsDBInitializer implements InitializingBean {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -17,7 +17,8 @@ class _IdsDBInitializer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        jdbcTemplate.update(_Ids.SCHEMA_SQL);
-        logger.info("_Ids.SCHEMA_SQL executed");
+        jdbcTemplate.update(_AIds.SCHEMA_SQL);
+        logger.info("_Ids.SCHEMA_SQL executed (abcbourse)");
     }
 }
+

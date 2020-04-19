@@ -1,7 +1,6 @@
 package com.nasd4q.portfolioWatcher.database.bnains.codes;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -13,20 +12,20 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Repository
-public class IdsRepository {
+public class BIdsRepository {
 
     private static final File DATA_FILE =
             new File("src/main/resources/data from www-bnains-org/codes/conv_isin.csv");
 
-    private final _IdsRepository repository;
+    private final _BIdsRepository repository;
 
     @Autowired
-    public IdsRepository(_IdsRepository repository) {
+    public BIdsRepository(_BIdsRepository repository) {
         this.repository = repository;
     }
 
     public void loadIntoDb() {
-        repository.saveAll(dataAsList().stream().map(s->_Ids.of(s)).collect(Collectors.toList()));
+        repository.saveAll(dataAsList().stream().map(s-> _BIds.of(s)).collect(Collectors.toList()));
     }
 
     private List<String> dataAsList() {

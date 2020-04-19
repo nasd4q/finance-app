@@ -1,8 +1,8 @@
-package com.nasd4q.portfolioWatcher.database.bnains.codes;
+package com.nasd4q.portfolioWatcher.database.abcbourse.codes;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-interface _IdsRepository extends CrudRepository<_Ids,Long> {
+interface _AIdsRepository extends CrudRepository<_AIds,Long> {
 }

@@ -6,10 +6,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table(_Ids.TABLE_NAME)
-class _Ids {
+@Table(_BIds.TABLE_NAME)
+class _BIds {
     private static final Logger logger = LoggerFactory.getLogger(
-            _Ids.class);
+            _BIds.class);
 
     static final String TABLE_NAME = "data_from_bnains.codes";
     static final String SCHEMA_SQL =
@@ -35,8 +35,8 @@ class _Ids {
     @Column("asset_id")
     private final Long assetId;
 
-    public _Ids(Long id, String sicovam, String mnemo, String isin, String libelle, String codeEuronext,
-                String mep, Long assetId) {
+    public _BIds(Long id, String sicovam, String mnemo, String isin, String libelle, String codeEuronext,
+                 String mep, Long assetId) {
         this.id = id;
         this.sicovam = sicovam;
         this.mnemo = mnemo;
@@ -47,15 +47,15 @@ class _Ids {
         this.assetId = assetId;
     }
 
-    public _Ids withId(Long id) {
+    public _BIds withId(Long id) {
         //logger.info("withId() called");
-        return new _Ids(id, this.sicovam, this.mnemo, this.isin, this.libelle, this.codeEuronext,
+        return new _BIds(id, this.sicovam, this.mnemo, this.isin, this.libelle, this.codeEuronext,
                 this.mep, this.assetId);
     }
 
-    public static _Ids of(String line) {
+    public static _BIds of(String line) {
         final String[] splits = line.split(";");
-        return new _Ids(null,
+        return new _BIds(null,
                 splits[0],
                 splits[1],
                 splits[2],
