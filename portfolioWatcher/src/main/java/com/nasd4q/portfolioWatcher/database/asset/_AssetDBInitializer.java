@@ -23,6 +23,14 @@ class _AssetDBInitializer implements InitializingBean {
         logger.info("_Asset.SCHEMA_SQL executed");
         jdbcTemplate.update(_AssetIdentification.SCHEMA_SQL);
         logger.info("_AssetIdentification.SCHEMA_SQL executed");
+
+        try {
+            jdbcTemplate.update(_AssetIdentification.DROP_CONSTRAINT_CHECK_TYPE);
+            logger.info("_AssetIdentification.ADD_CONSTRAINT_CHECK_TYPE executed");
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+
         try {
             jdbcTemplate.update(_AssetIdentification.ADD_CONSTRAINT_CHECK_TYPE);
             logger.info("_AssetIdentification.ADD_CONSTRAINT_CHECK_TYPE executed");

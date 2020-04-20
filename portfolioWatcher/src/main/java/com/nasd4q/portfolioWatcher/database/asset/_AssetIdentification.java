@@ -1,5 +1,6 @@
 package com.nasd4q.portfolioWatcher.database.asset;
 
+import com.nasd4q.portfolioWatcher.datatypes.Asset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
@@ -28,12 +29,14 @@ class _AssetIdentification {
             "ALTER TABLE assets.identifications ADD CONSTRAINT check_type CHECK(" +
                     "type in (" +
                     Arrays.stream(AssetIdentification.values())
-                            .map(s->"'" + s.toString() + "'")
+                            .map(s -> "'" + s.toString() + "'")
                             .collect(Collectors.joining(", ")) +
                     "));";
     static final String ADD_CONSTRAINT_UNIQUE_IDENTITY =
             "ALTER TABLE assets.identifications ADD CONSTRAINT unique_identity UNIQUE(" +
                     "type, value);";
+    static final String DROP_CONSTRAINT_CHECK_TYPE =
+            "ALTER TABLE assets.identifications DROP CONSTRAINT check_type;";
 
 
     @Id
@@ -43,11 +46,11 @@ class _AssetIdentification {
     private final String type, value;
 
     public _AssetIdentification(Long id, Long assetId, String type, String value) {
-        if (assetId==null || type==null || value==null) {
+        if (assetId == null || type == null || value == null) {
             throw new IllegalArgumentException(
                     "No _AssetIdentification with any null significant field");
         }
-        if (!Arrays.stream(AssetIdentification.values()).anyMatch(t->t.toString().equals(type))) {
+        if (!Arrays.stream(AssetIdentification.values()).anyMatch(t -> t.toString().equals(type))) {
             throw new IllegalArgumentException(
                     "_AssetIdentification type not recognized");
         }
@@ -58,7 +61,7 @@ class _AssetIdentification {
     }
 
     public _AssetIdentification withId(Long id) {
-        logger.info("withId() called");
+        //logger.info("withId() called");
         return new _AssetIdentification(id, this.assetId, this.type, this.value);
     }
 
@@ -73,6 +76,20 @@ class _AssetIdentification {
     }
 
     public static _AssetIdentification ofIsin(Long assetId, String isin) {
-        return new _AssetIdentification(null, assetId, "ISIN", isin);
+        return new _AssetIdentification(null, assetId,
+                AssetIdentification.ISIN.toString(), isin);
+    }
+
+    public static _AssetIdentification ofSicovam(Long assetId, String sicovam) {
+        return new _AssetIdentification(null, assetId,
+                AssetIdentification.SICOVAM.toString(), sicovam);
+    }
+
+    public AssetIdentification getType() {
+        return AssetIdentification.valueOf(this.type);
+    }
+
+    public String getValue() {
+        return value;
     }
 }

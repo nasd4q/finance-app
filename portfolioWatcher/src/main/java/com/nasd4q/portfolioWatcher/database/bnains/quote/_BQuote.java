@@ -111,4 +111,8 @@ class _BQuote {
                 ", assetId=" + assetId +
                 '}';
     }
+
+    public Double getClose() {
+        return close;
+    }
 }

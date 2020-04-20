@@ -1,5 +1,6 @@
 package com.nasd4q.portfolioWatcher.database.asset;
 
+import com.nasd4q.portfolioWatcher.datatypes.Asset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
@@ -11,7 +12,7 @@ import org.springframework.data.relational.core.mapping.Table;
     - withId method that allows to set Id from existing entity
  */
 @Table(_Asset.TABLE_NAME)
-class _Asset {
+class _Asset implements Asset {
 
     private static final Logger logger = LoggerFactory.getLogger(_Asset.class);
 
@@ -35,8 +36,12 @@ class _Asset {
     }
 
     public _Asset withId(Long id) {
-        logger.info("withId() called");
+        //logger.info("withId() called");
         return new _Asset(id, this.description);
+    }
+
+    public static  _Asset of (String description) {
+        return new _Asset(null, description);
     }
 
     @Override
@@ -45,5 +50,10 @@ class _Asset {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public Long getIdentifier() {
+        return id;
     }
 }

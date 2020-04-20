@@ -1,8 +1,11 @@
 package com.nasd4q.portfolioWatcher.database.bnains.quote;
 
-import com.nasd4q.portfolioWatcher.database.bnains.quote.dependencies.AssetRepository;
+import com.nasd4q.portfolioWatcher.database.asset.AssetIdentification;
 import com.nasd4q.portfolioWatcher.datatypes.Asset;
+
+import com.nasd4q.portfolioWatcher.operations.dependencies.AssetRepository;
 import com.nasd4q.portfolioWatcher.operations.dependencies.QuoteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +27,7 @@ import java.util.stream.Collectors;
 public class BQuoteRepository implements QuoteRepository {
 
     private static final File B_DATA_FOLDER =
-            new File("src/main/resources/data from www-bnains-org");
+            new File("src/main/resources/data/from www-bnains-org/quotes");
 
 
 
@@ -88,14 +91,26 @@ public class BQuoteRepository implements QuoteRepository {
 
     @Override
     public Double getValue(Asset asset, LocalDateTime datetime) {
-        //TODO
-        //assetRepository.getAssetAvatars(asset);
-        //bQuoteRepository.getLatestQuote   ????
-        return 0.0;
-    }
+        System.out.println("getValue() called");
+        Map<AssetIdentification, String> ids = assetRepository.getIdsFor(asset);
 
-    void associateAssetId() {
-        //TODO
+        String date = datetime.toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
+
+        Iterable<_BQuote> quotes = bQuoteRepository.findByIsinOrSicovamAndDate(
+                ids.get(AssetIdentification.ISIN),
+                ids.get(AssetIdentification.SICOVAM),
+                date);
+
+        Iterator<_BQuote> iterator = quotes.iterator();
+
+        Double value = null;
+        if (iterator.hasNext())
+            value = iterator.next().getClose();
+        if (iterator.hasNext())
+            throw new IllegalStateException("2 quotes found for asset : " + asset +
+                    ", date " + date);
+
+        return value;
     }
 
     /* ******************************************************

@@ -35,6 +35,6 @@ WHERE q1.code = c1.isin AND c1.id IS NOT NULL AND
 (q1.isin IS NULL AND q1.libelle IS NULL)
 
 UPDATE quotes q1
-SET isin = c1.isin, libelle = c1.libelle
-FROM codes c1
-WHERE (q1.isin IS NULL AND q1.libelle IS NULL) AND q1.code = c1.trimmedsicovam;
+SET isin = c1.isin, libelle = c1.nom
+FROM abcbourse.codes c1
+WHERE (q1.isin IS NULL AND q1.libelle IS NULL) AND q1.code = c1.isin;

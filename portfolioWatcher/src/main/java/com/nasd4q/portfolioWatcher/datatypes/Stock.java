@@ -34,6 +34,12 @@ public interface Stock {
         private final String nom;
 
         private Immutable(String codeIsin, String codeSicovam, String nom) {
+            if (codeIsin != null)
+                codeIsin = codeIsin.trim();
+            if (codeSicovam != null)
+                codeSicovam = codeSicovam.trim();
+            if (nom != null)
+                nom = nom.trim();
             this.codeIsin = codeIsin;
             this.codeSicovam = codeSicovam;
             this.nom = nom;

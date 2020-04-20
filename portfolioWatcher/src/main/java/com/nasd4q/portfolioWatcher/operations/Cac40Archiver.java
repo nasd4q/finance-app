@@ -2,8 +2,11 @@ package com.nasd4q.portfolioWatcher.operations;
 
 import com.nasd4q.portfolioWatcher.datatypes.Cac40Member;
 import com.nasd4q.portfolioWatcher.datatypes.Stock;
+
 import com.nasd4q.portfolioWatcher.operations.dependencies.Cac40DataFetcher;
 import com.nasd4q.portfolioWatcher.operations.dependencies.Cac40Repository;
+import com.nasd4q.portfolioWatcher.operations.dependencies.AssetRepository;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,12 +21,15 @@ public class Cac40Archiver {
 
     private final Cac40DataFetcher cac40DataFetcher;
     private final Cac40Repository cac40Repository;
+    private final AssetRepository assetRepository;
 
     @Autowired
-    public Cac40Archiver(Cac40DataFetcher cac40DataFetcher, Cac40Repository cac40Repository) {
+    public Cac40Archiver(Cac40DataFetcher cac40DataFetcher, Cac40Repository cac40Repository, AssetRepository assetRepository) {
         this.cac40DataFetcher = cac40DataFetcher;
         this.cac40Repository = cac40Repository;
+        this.assetRepository = assetRepository;
     }
+
 
     /**
      * Persists the composition of the Cac 40 index at a number of evenly spaced dates
@@ -47,6 +53,12 @@ public class Cac40Archiver {
 
             cac40Repository.addAll(cac40Members);
         }
+    }
+
+    public void registerAllCac40MembersAsAssets() {
+        cac40Repository.findAll().stream()
+                .map(m -> m.getStock())
+                .forEach(s->assetRepository.getAssetFor(s));
     }
 }
 

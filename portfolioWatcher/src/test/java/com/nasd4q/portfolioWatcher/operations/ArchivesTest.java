@@ -25,13 +25,19 @@ public class ArchivesTest {
         cac40Repository.findAll().stream().forEach(System.out::println);
         System.out.println("-------Archiving...-------");
         cac40Archiver.archiveComposition(
-                LocalDate.of(1999,1,1),
                 LocalDate.of(2000,1,1),
+                LocalDate.of(2017,1,1),
                 Period.of(0,1,0)
                 );
         System.out.println("-------Subsequent content of autowired cac40repository-------");
         Collection<Cac40Member> repoContentAfter = cac40Repository.findAll();
         repoContentAfter.stream().forEach(System.out::println);
         System.out.println(repoContentAfter.size());
+    }
+
+    @Test
+    public void testRegisteringAssets() {
+        testArchiving();
+        cac40Archiver.registerAllCac40MembersAsAssets();
     }
 }
