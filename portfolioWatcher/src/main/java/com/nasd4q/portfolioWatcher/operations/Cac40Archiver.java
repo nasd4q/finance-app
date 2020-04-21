@@ -58,7 +58,7 @@ public class Cac40Archiver {
     public void registerAllCac40MembersAsAssets() {
         cac40Repository.findAll().stream()
                 .map(m -> m.getStock())
-                .forEach(s->assetRepository.getAssetFor(s));
+                .forEach(s->assetRepository.register(s));
     }
 }
 

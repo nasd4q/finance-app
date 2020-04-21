@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.operations.dependencies;
 
-import com.nasd4q.portfolioWatcher.database.asset.AssetIdentification;
+import com.nasd4q.portfolioWatcher.datatypes.AssetIdentification;
 import com.nasd4q.portfolioWatcher.datatypes.Asset;
 import com.nasd4q.portfolioWatcher.datatypes.Stock;
 
@@ -15,7 +15,7 @@ public interface AssetRepository {
      * If nothing found, then creates an asset with isin or sicovam provided if those are valid
      * and returns the asset
      */
-    Asset getAssetFor(Stock s);
+    Asset register(Stock s);
 
     /**
      * @return A map containing all known ids for the given asset

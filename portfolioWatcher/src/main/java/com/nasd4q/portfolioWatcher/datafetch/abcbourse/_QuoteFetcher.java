@@ -21,6 +21,8 @@ import java.util.*;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+//TODO - move this to another module
+
 @Component
 class _QuoteFetcher {
 

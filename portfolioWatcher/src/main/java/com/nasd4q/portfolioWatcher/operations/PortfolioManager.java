@@ -3,6 +3,7 @@ package com.nasd4q.portfolioWatcher.operations;
 import com.nasd4q.portfolioWatcher.datatypes.Asset;
 import com.nasd4q.portfolioWatcher.datatypes.Portfolio;
 import com.nasd4q.portfolioWatcher.operations.dependencies.QuoteRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

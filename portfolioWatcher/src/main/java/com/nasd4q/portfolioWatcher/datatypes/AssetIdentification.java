@@ -1,4 +1,4 @@
-package com.nasd4q.portfolioWatcher.database.asset;
+package com.nasd4q.portfolioWatcher.datatypes;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;

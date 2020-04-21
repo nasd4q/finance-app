@@ -1,6 +1,7 @@
 package com.nasd4q.portfolioWatcher.database.asset;
 
 import com.nasd4q.portfolioWatcher.datatypes.Asset;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;

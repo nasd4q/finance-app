@@ -1,6 +1,5 @@
 package com.nasd4q.portfolioWatcher.database.asset;
 
-import org.postgresql.util.PSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;

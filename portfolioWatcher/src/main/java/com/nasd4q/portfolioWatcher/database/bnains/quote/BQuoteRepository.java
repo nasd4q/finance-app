@@ -1,6 +1,6 @@
 package com.nasd4q.portfolioWatcher.database.bnains.quote;
 
-import com.nasd4q.portfolioWatcher.database.asset.AssetIdentification;
+import com.nasd4q.portfolioWatcher.datatypes.AssetIdentification;
 import com.nasd4q.portfolioWatcher.datatypes.Asset;
 
 import com.nasd4q.portfolioWatcher.operations.dependencies.AssetRepository;
@@ -18,7 +18,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+//TODO - refactor this class as a manager. It is not a repository (it depends on
+// multiple repositories).
 @Component
 /**
  * Repository class for managing quote data obtained from www.bnains.org

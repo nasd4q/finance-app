@@ -1,8 +1,11 @@
 package com.nasd4q.portfolioWatcher.database.asset;
 
 import com.nasd4q.portfolioWatcher.datatypes.Asset;
+import com.nasd4q.portfolioWatcher.datatypes.AssetIdentification;
 import com.nasd4q.portfolioWatcher.datatypes.Stock;
+
 import com.nasd4q.portfolioWatcher.operations.dependencies.AssetRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +45,7 @@ public class AssetRepository1 implements AssetRepository {
      * If nothing found, then creates an asset with isin or sicovam provided if those are valid
      * and returns the asset
      */
-    public Asset getAssetFor(Stock s) {
+    public Asset register(Stock s) {
         if (s==null)
             return null;
         List<Long> longs = assetIdsWithTypeAndValueIn(toIds(s));

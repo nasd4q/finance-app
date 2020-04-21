@@ -1,5 +1,6 @@
 package com.nasd4q.portfolioWatcher.database.asset;
 
+import com.nasd4q.portfolioWatcher.datatypes.AssetIdentification;
 import org.junit.jupiter.api.Test;
 
 public class AssetIdentificationEnumTest {
