@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nasd4q</groupId>
-	<artifactId>portfolioWatcher</artifactId>
+	<artifactId>financeDB</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>portfolioWatcher</name>
-	<description>Project to monitor finance portfolios</description>
+	<name>financeDB</name>
+	<description>Project to compile financial data into a Postgres DB</description>
 
 	<properties>
 		<java.version>14</java.version>
@@ -21,9 +21,14 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -35,41 +40,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<!-- JSOUP to parse data from web -->
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.10.2</version>
-		</dependency>
-
-		<!-- connect with postgres db -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.12</version>
-		</dependency>
-
-		<!-- eliminate boilerplate db code : getConnection, createStatement etc.
-			+ set up a datasource (com.zaxxer.hikari.HikariDataSource HikariPool ??) -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-
-		<!-- CRUD repository from entity... -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jdbc</artifactId>
-		</dependency>
-
-		<!-- selenium (to be able to download from ABCbourse site) -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.141.59</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
