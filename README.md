@@ -16,7 +16,7 @@ provided by the website www.bnains.org
 * database pckg - various tester class, including BnainsMembershipRepoTests which tests the repo
 
 ##### resource (main)
-*sql.properties which stores a bunch of SQL (postgres) queries...
+* sql.properties which stores a bunch of SQL (postgres) queries...
 
 ##### besides this, in financeApp/
 * git-ignored "data from www-bnains-org" folder containing 1993-2016 historical daily
